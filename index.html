@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2026 ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: clamp(2rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            color: #f0f0f0;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-style: italic;
+        }
+
+        .interactive-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: fadeIn 2s ease;
+        }
+
+        .interactive-section h2 {
+            color: #667eea;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .game-container {
+            margin: 30px 0;
+        }
+
+        
+        .scratch-card {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .scratch-canvas {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            touch-action: none;
+            z-index: 2;
+        }
+
+        .scratch-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            z-index: 1;
+        }
+
+        .scratch-message p {
+            color: #1a1a1a;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        .love-quiz {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin: 20px 0;
+        }
+
+        .quiz-question p {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 15px 25px;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .quiz-option.selected {
+            background: #667eea;
+            color: white;
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .letter-reveal {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .letter-envelope {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .letter-envelope:hover {
+            transform: scale(1.1);
+        }
+
+        .letter-envelope.opened {
+            display: none;
+        }
+
+        .letter-content {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+
+        .letter-content.show {
+            display: block;
+        }
+
+        .letter-content p {
+            color: #555;
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        .memory-jar {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .jar-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        .jar-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+        }
+
+        .jar-memory {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .jar-memory.show {
+            display: block;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 900px;
+            margin: 60px auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: fadeIn 1s ease;
+            display: none;
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideIn 0.8s ease;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .slide-message {
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        .slide-message h3 {
+            color: #667eea;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .slide-message p {
+            color: #555;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            line-height: 1.8;
+            font-style: italic;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .slide-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .slide-btn {
+            pointer-events: all;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .slide-btn:hover {
+            background: white;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .url-input-section {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .url-input-section h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .url-input-section p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .url-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            border: 2px solid #667eea;
+            border-radius: 30px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .load-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .load-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float 6s ease-in infinite;
+            opacity: 0;
+        }
+
+        .countdown {
+            text-align: center;
+            margin: 60px 0;
+            animation: fadeIn 2.5s ease;
+        }
+
+        .countdown h2 {
+            color: #fff;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 20px;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 80px;
+        }
+
+        .time-unit .number {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .time-unit .label {
+            color: #f0f0f0;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 3s ease;
+        }
+
+        .message h3 {
+            color: #667eea;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 20px;
+        }
+
+        .message p {
+            color: #555;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="fireworks" id="fireworks"></div>
+    <div class="hearts" id="hearts"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Happy New Year 2026! 🎉</h1>
+            <p>To the most amazing person in my life ❤️</p>
+        </div>
+
+        <div class="countdown">
+            <h2>Celebrating Our Journey Together</h2>
+            <div class="time-display" id="timeDisplay"></div>
+        </div>
+
+        <!-- Interactive Scratch Card -->
+        <div class="interactive-section">
+            <h2>💝 Scratch to Reveal My Message</h2>
+            <div class="scratch-card">
+                <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+                <div class="scratch-message">
+                    <p style="color:#010101 !important;">Tmi mur Jaan ❤️, Kolija 💖, Baby 👼, Cutie pie 🥧, Sunu munu 🌹, Dhunu munu ! 💕 And also my wifey 👩‍❤️‍💋‍👨. Happy New Year Jaan. 💐💐💐</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Love Quiz -->
+        <div class="interactive-section">
+            <h2>❤️ How Well Do You Know Us?</h2>
+            <div class="love-quiz">
+                <div class="quiz-question">
+                    <p>What's my favorite thing about you?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">How you make me happy every single day 😊</div>
+                        <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Your taste in movies 🍿</div>
+                        <div class="quiz-option" onclick="selectAnswer(this, 'wrong')">Your cooking 😋</div>
+                        <div class="quiz-option" onclick="selectAnswer(this, 'correct')">All of the above 😘</div>
+
+                    </div>
+                </div>
+                <div class="quiz-result" id="quizResult"></div>
+            </div>
+        </div>
+
+        <!-- Letter Reveal -->
+        <div class="interactive-section">
+            <h2>💌 Open My Letter to You</h2>
+            <div class="letter-reveal">
+                <div class="letter-envelope" id="envelope" onclick="openLetter()">
+                    <p style="font-size: 80px; margin: 20px;">💌</p>
+                    <p style="color: #667eea; font-size: 18px;">Click to open</p>
+                </div>
+                <div class="letter-content" id="letterContent">
+                    <h3 style="color: #667eea; margin-bottom: 20px;">My Dearest Love,</h3>
+                    <p>As we welcome 2026, I want to take a moment to tell you how much you mean to me.</p>
+                    <p>Every moment with you is a treasure. Your smile brightens my darkest days, your laughter is my favorite melody, and your love is my greatest gift.</p>
+                    <p>Thank you for being you - for your kindness, your patience, your beautiful soul. I promise to cherish every moment we have together and to love you more with each passing day.</p>
+                    <p>Moi wish koru eitu bosorot tmr jen xopun bur puron hoi.</p>
+                    <p>Here's to us, to our dreams, and to all the amazing memories we'll create this year and beyond.</p>
+                    <p>Happy New Year, and I love you Jaan! 💕💕💕</p>
+                    <p style="margin-top: 30px; font-style: italic;">Forever yours,<br>Your Khun ❤️</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Jar -->
+        <div class="interactive-section">
+            <h2>🎁 Pull a Memory from Our Jar</h2>
+            <div class="memory-jar">
+                <p style="text-align: center; color: #666; margin-bottom: 20px;">Each memory is a precious moment we've shared together</p>
+                <button class="jar-button" onclick="pullMemory()">Pull a Memory 🎲</button>
+                <div class="jar-memory" id="jarMemory"></div>
+            </div>
+        </div>
+
+        <!-- Photo Section - No Manual Upload Needed -->
+        <div class="interactive-section" style="background: linear-gradient(135deg, rgba(240, 147, 251, 0.2) 0%, rgba(245, 87, 108, 0.2) 100%);">
+            <h2>📸 Our Beautiful Memories</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px;">
+                Every photo tells our story ❤️
+            </p>
+        </div>
+
+        <div class="slideshow-container" id="slideshowContainer">
+            <div id="slidesWrapper"></div>
+            <div class="slide-controls">
+                <button class="slide-btn" onclick="changeSlide(-1)">❮</button>
+                <button class="slide-btn" onclick="changeSlide(1)">❯</button>
+            </div>
+        </div>
+
+        <div class="message">
+            <h3>My New Year Wishes For Us</h3>
+            <p>
+                As we step into 2026 together, I want you to know how grateful I am for every moment we've shared. 
+                You've made my life brighter, my days happier, and my heart fuller. Here's to more adventures, 
+                more laughter, and more beautiful memories together. I love you more than words can express. 
+                Happy New Year, my love! 💕
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            {
+                title: "Our First Adventure Together",
+                text: "Remember when we first met? That moment changed my life forever. You walked into my world and everything became brighter. ✨"
+            },
+            {
+                title: "Every Laugh We Shared",
+                text: "Your laughter is my favorite sound in the world. The way you make me smile even on the toughest days is pure magic. 😊"
+            },
+            {
+                title: "The Little Moments",
+                text: "It's not just the big moments, but all the little ones too - morning coffees, late-night talks, comfortable silences. I cherish them all. ☕"
+            },
+            {
+                title: "Growing Together",
+                text: "We've grown so much together. Through challenges and triumphs, you've been my constant. Thank you for being my partner in everything. 🌱"
+            },
+            {
+                title: "Your Beautiful Soul",
+                text: "Your kindness, your strength, your beautiful heart - everything about you amazes me. I'm so lucky to know you, inside and out. 💖"
+            },
+            {
+                title: "Adventures Await",
+                text: "Every photo is a memory, but there are so many more adventures waiting for us. I can't wait to create more beautiful moments with you. 🌍"
+            },
+            {
+                title: "My Forever Love",
+                text: "As we step into this new year, I want you to know - you're my today and all of my tomorrows. I love you more than words can say. 💕"
+            },
+            {
+                title: "Thank You",
+                text: "Thank you for being you, for loving me, for making every day an adventure. Here's to us and all the amazing memories yet to come! 🥂"
+            }
+        ];
+
+        const memories = [
+            "Remember that time we soaked in the rain together? Then we searched for clothes store for me and changed them in the bus station. Those spontaneous moments with you are my favorite! ☕",
+            "That day we stayed up all night talking about everything 🌚 - I never wanted it to end. 🌙",
+            "When you surprised me with my favorite food just because you knew I had a tough day. You always know how to make me smile! 🍕",
+            "Our first date together - The mess we made that day was so much fun. 🎉",
+            "The way you hold my hand when we're walking, like you never want to let go. I don't either. 🤝",
+            "That hilarious moment when we at the restaurant and we saw your neighbour with another man! 👕",
+            "When we went to the park and you skipped your exam. 🤭",
+            "Remember our silly inside jokes that make no sense to anyone else? Those are our special moments. 😄",
+            "When i met papa for the first time and i was scared shitless 😱 by the way he was looking at me like he was going to beat the shit out of me"
+        ];
+
+        let currentSlide = 0;
+        
+        // Then list the photo filenames below:
+        const images = [
+            'photos/photo1.jpeg',
+            'photos/photo2.jpeg',
+            'photos/photo3.jpeg',
+            'photos/photo4.jpeg',
+            'photos/photo5.jpeg',
+            'photos/photo6.jpeg',
+            'photos/photo7.jpeg',
+            'photos/photo8.jpeg',
+            // 'photos/photo9.jpeg'
+        ];
+        
+        // Initialize slideshow automatically when page loads
+        window.addEventListener('load', function() {
+            initSlideshow();
+        });
+
+        // Scratch Card
+        const canvas = document.getElementById('scratchCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        function initScratchCard() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            ctx.fillStyle = '#667eea';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 24px Georgia';
+            ctx.textAlign = 'center';
+            ctx.fillText('❤️ Scratch Here ❤️', canvas.width / 2, canvas.height / 2);
+        }
+
+        function scratch(e) {
+            if (!isDrawing) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+            
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 30, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        canvas.addEventListener('mousedown', () => isDrawing = true);
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mousemove', scratch);
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); isDrawing = true; });
+        canvas.addEventListener('touchend', () => isDrawing = false);
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); scratch(e); });
+
+        window.addEventListener('load', initScratchCard);
+        window.addEventListener('resize', initScratchCard);
+
+        // Quiz
+        function selectAnswer(element, result) {
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.classList.add('show');
+            
+            if (result === 'correct') {
+                resultDiv.innerHTML = '<h3 style="color: #4caf50;">💚 Perfect! You know me so well!</h3><p>You always know exactly what makes me happy Jaan. It\'s all of the above. That\'s some of the million reasons I love you!</p>';
+            } else {
+                resultDiv.innerHTML = '<h3 style="color: #667eea;">💙 Close, but it\'s actually...</h3><p>All of the above Jaan. How you make me happy every single day! Your smile and laughter are everything to me. 😊</p>';
+            }
+        }
+
+        // Letter
+        function openLetter() {
+            document.getElementById('envelope').classList.add('opened');
+            document.getElementById('letterContent').classList.add('show');
+            createFireworkBurst();
+        }
+
+        // Memory Jar
+        let usedMemories = [];
+        function pullMemory() {
+            if (usedMemories.length === memories.length) {
+                usedMemories = [];
+            }
+            
+            let availableMemories = memories.filter((_, index) => !usedMemories.includes(index));
+            let randomIndex = Math.floor(Math.random() * availableMemories.length);
+            let memoryIndex = memories.indexOf(availableMemories[randomIndex]);
+            usedMemories.push(memoryIndex);
+            
+            const memoryDiv = document.getElementById('jarMemory');
+            memoryDiv.textContent = memories[memoryIndex];
+            memoryDiv.classList.add('show');
+            
+            createHeartBurst();
+        }
+
+        // Slideshow
+        function initSlideshow() {
+            const slideshowContainer = document.getElementById('slideshowContainer');
+            const slidesWrapper = document.getElementById('slidesWrapper');
+            slideshowContainer.style.display = 'block';
+            slidesWrapper.innerHTML = '';
+
+            images.forEach((src, index) => {
+                const message = messages[index % messages.length];
+                
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                if (index === 0) slide.classList.add('active');
+                
+                slide.innerHTML = `
+                    <img src="${src}" alt="Our Memory ${index + 1}" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800'">
+                    <div class="slide-message">
+                        <h3>${message.title}</h3>
+                        <p>${message.text}</p>
+                    </div>
+                `;
+                
+                slidesWrapper.appendChild(slide);
+            });
+        }
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            
+            slides[currentSlide].classList.remove('active');
+            
+            currentSlide += direction;
+            
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Fireworks and Hearts
+        function createFirework() {
+            const fireworks = document.getElementById('fireworks');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f7b731', '#5f27cd', '#00d2d3'];
+            
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.5;
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / 30;
+                const velocity = 50 + Math.random() * 100;
+                particle.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
+                particle.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
+                
+                fireworks.appendChild(particle);
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        function createFireworkBurst() {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(createFirework, i * 200);
+            }
+        }
+
+        function createHeart() {
+            const hearts = document.getElementById('hearts');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            const emojis = ['❤️', '🌻', '💐', '🌹', '🥳', '🎊', '🎉', '💕'];
+            heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+            heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+            
+            hearts.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+        function createHeartBurst() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        setInterval(createFirework, 3000);
+        setInterval(createHeart, 1500);
+
+        // Countdown
+        function updateCountdown() {
+            const now = new Date();
+            const newYear = new Date('2026-01-01T00:00:00');
+            
+            let diff = newYear - now;
+            if (diff < 0) diff = now - newYear;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('timeDisplay').innerHTML = `
+                <div class="time-unit">
+                    <div class="number">${days}</div>
+                    <div class="label">Days</div>
+                </div>
+                <div class="time-unit">
+                    <div class="number">${hours}</div>
+                    <div class="label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <div class="number">${minutes}</div>
+                    <div class="label">Minutes</div>
+                </div>
+                <div class="time-unit">
+                    <div class="number">${seconds}</div>
+                    <div class="label">Seconds</div>
+                </div>
+            `;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
